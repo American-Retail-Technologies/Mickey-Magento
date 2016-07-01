@@ -1,0 +1,48 @@
+Side Note - Command to increase memory of PHP process:
+
+	php -dmemory_limit=1G composer.phar update
+
+Setting up SM Market Theme Manual Installation
+http://www.magentech.com/documentation/sm-market-magento-2/#run-dialog
+
+	1. From sm_market_theme_m2.0x_v2.1.0.zip, extract to a folder on your own machine
+
+	2. Open FileZilla and navigate to the folder you extracted the .zip folder
+
+	3. Merge the folder
+		app -> code
+		app -> design -> frontend -> Sm
+		pub -> media -> logo -> default
+		pub -> media -> sm
+		pub -> media -> wysiwyg
+		pub -> static -> _requirejs -> adminhtml -> Magento -> backend -> en_US
+		pub -> static -> _requirejs -> frontend -> Sm
+		pub -> static -> adminhtml -> Magento		// Check the folder, some files could not be transfered over
+		pub -> static -> frontend -> Sm
+
+	4. Execute these commands
+		php bin/magento cache:clean
+
+		php bin/magento setup:upgrade
+
+		php -dmemory_limit=2G bin/magento setup:static-content:deploy //temporarly increases the memory_limit for this code
+			//if it runs out of memory, restart step 4
+		php bin/magento setup:upgrade
+
+		php -dmemory_limit=2G bin/magento setup:di:compile (OPTIONAL - Does not RUN)
+
+		php bin/magento indexer:reindex
+
+	3. Select the new theme after this, Admin Panel -> Store -> Configuration -> Design
+
+	4. While in Configurations -> Magentech.com -> SM Market
+	
+	5. Expand Theme Layout -> Header style -> Header style 2
+
+	6. Include any other configuration you would like or copy it over from:
+	   http://www.magentech.com/documentation/sm-market-magento-2/#22
+
+	   To enable features:
+		Show Go to Top
+		Show Add to Cart
+		Show Add to Compare
