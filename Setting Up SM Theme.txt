@@ -20,16 +20,16 @@ http://www.magentech.com/documentation/sm-market-magento-2/#run-dialog
 		pub -> static -> adminhtml -> Magento		// Check the folder, some files could not be transfered over
 		pub -> static -> frontend -> Sm
 
-	4. Execute these commands
+	4. Execute these commands at americanretailsupply.net directory
 		php bin/magento cache:clean
 
 		php bin/magento setup:upgrade
 
-		php -dmemory_limit=2G bin/magento setup:static-content:deploy //temporarly increases the memory_limit for this code
-			//if it runs out of memory, restart step 4
+		php -dmemory_limit=2G bin/magento setup:static-content:deploy //temporarly increases the memory_limit for this code. If it runs out of memory, restart step 4 because it might need to flush the cache first.
+		
 		php bin/magento setup:upgrade
 
-		php -dmemory_limit=2G bin/magento setup:di:compile (OPTIONAL - Does not RUN)
+		php -dmemory_limit=2G bin/magento setup:di:compile //(OPTIONAL - Does not RUN)
 
 		php bin/magento indexer:reindex
 
